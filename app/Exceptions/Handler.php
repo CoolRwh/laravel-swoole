@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Enums\Common\CodeEnum;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,10 +30,10 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
      *
-     * @param  \Exception  $exception
-     * @return void
+     * @param Exception $exception
+     * @return mixed|void
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
@@ -46,6 +49,33 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+
+
+
+        // 是否记录异常日志 默认记录
+        $message    = $exception->getMessage();
+        $code       = $exception->getCode();
+        $httpCode   = Response::HTTP_INTERNAL_SERVER_ERROR;
+        $resData = [];
+        $resData['data']            = [];
+        $resData['mate']['message'] = $message;
+        $resData['mate']['code']    = $code;
+
+        if (method_exists($exception, 'getStatusCode')) {
+            $httpCode = $exception->getStatusCode();
+        }
+        $resData['mate']['httpCode']    = $httpCode;
+
+        // 验证异常 422
+        if ($exception instanceof ValidationException) {
+            $resData['mate']['message'] = $exception->validator;
+            return response()->json($resData,$httpCode);
+        }
+
+        if (empty($message)){
+            $resData['mate']['message'] = Response::$statusTexts[$httpCode];
+        }
+        return response()->json($resData);
+//        return parent::render($request, $exception);
     }
 }

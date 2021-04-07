@@ -2,6 +2,7 @@
 
 namespace App\Transformers\Api;
 
+use App\Models\Users;
 use League\Fractal\TransformerAbstract;
 
 class UsersTransformer extends TransformerAbstract
@@ -14,7 +15,7 @@ class UsersTransformer extends TransformerAbstract
     protected $defaultIncludes = [
         //
     ];
-    
+
     /**
      * List of resources possible to include
      *
@@ -23,16 +24,15 @@ class UsersTransformer extends TransformerAbstract
     protected $availableIncludes = [
         //
     ];
-    
+
     /**
-     * A Fractal transformer.
      *
+     * @param Users $users
      * @return array
      */
-    public function transform()
+    public function transform(Users $users)
     {
-        return [
-            //
-        ];
+       $data = $users->toArray();
+       return $data;
     }
 }
