@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class WebSocket extends Command
 {
@@ -41,16 +42,19 @@ class WebSocket extends Command
         $server = new \Swoole\WebSocket\Server("0.0.0.0", 9503);
         //连接成功回调
         $server->on('open', function (\Swoole\WebSocket\Server $server, $request) {
-            $this->info($request->fd .'链接成功');
-        });
 
-        //连接成功回调
-        $server->on('open', function (\Swoole\WebSocket\Server $server, $request) {
-            $this->info($request->fd.'链接成功');
+            $data = request()->all();
+            Log::info('[链接成功][1]：',['data'=>$data,'request'=>$request]);
+            $this->info($request->fd .'链接成功');
         });
 
         //收到消息回调
         $server->on('message', function (\Swoole\WebSocket\Server $server, $frame) {
+
+
+            $data = request()->all();
+            Log::info('[消息]：',['data'=>$data,'frame'=>$frame]);
+
             $content = $frame->data;
 
             //推送给所有链接
