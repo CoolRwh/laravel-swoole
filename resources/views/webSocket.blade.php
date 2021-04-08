@@ -25,6 +25,7 @@
 
         //收到服务端消息回调
         webSocket.onmessage = function (event) {
+            console.log(event);
             var content = document.getElementById('content');
             content.innerHTML = content.innerHTML.concat('<p style="margin-left:20px;height:20px;line-height:20px;">'+event.data+'</p>');
         }
