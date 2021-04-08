@@ -55,7 +55,13 @@ class WebSocket extends Command
             Log::info('[消息]：',['data'=>$content]);
 
 
-            Log::info('[connections]：',['fd'=>$server->connections]);
+            if (is_object($server->connections)){
+                $data = collect($server->connections)->toArray();
+            }else{
+                $data = [];
+            }
+
+            Log::info('[connections]：',['fd'=>$data]);
             //推送给所有链接
             foreach ($server->connections as $fd){
                 Log::info('[fd]：',['fd'=>$fd]);
