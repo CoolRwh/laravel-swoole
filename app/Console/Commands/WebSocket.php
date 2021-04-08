@@ -41,12 +41,12 @@ class WebSocket extends Command
         $server = new \Swoole\WebSocket\Server("0.0.0.0", 9503);
         //连接成功回调
         $server->on('open', function (\Swoole\WebSocket\Server $server, $request) {
-            $this->info($request->fd . '链接成功');
+            $this->info($request->fd .'链接成功');
         });
 
         //连接成功回调
         $server->on('open', function (\Swoole\WebSocket\Server $server, $request) {
-            $this->info($request->fd . '链接成功');
+            $this->info($request->fd.'链接成功');
         });
 
         //收到消息回调
