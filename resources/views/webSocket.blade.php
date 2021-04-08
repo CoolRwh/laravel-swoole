@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
     if(window.WebSocket){
-        var webSocket = new WebSocket("ws://120.27.242.10:9503");
+        var webSocket = new WebSocket("ws://120.27.242.10:9503?userId="+11);
         webSocket.onopen = function (event) {
             console.log(event);
             console.log('webSocket 链接成功');
