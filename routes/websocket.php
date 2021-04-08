@@ -15,10 +15,12 @@ use SwooleTW\Http\Websocket\Facades\Websocket;
 
 Websocket::on('connect', function ($websocket, Request $request) {
     // called while socket on connect
+    echo "connect";
 });
 
 Websocket::on('disconnect', function ($websocket) {
     // called while socket on disconnect
+    echo "disconnect";
 });
 
 Websocket::on('example', function ($websocket, $data) {
