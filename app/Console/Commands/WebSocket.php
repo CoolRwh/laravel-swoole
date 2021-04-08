@@ -52,6 +52,11 @@ class WebSocket extends Command
 
             $content = $frame->data;
 
+            if (is_object($content)){
+                $content = json_decode($content,true);
+            }
+
+
             Log::info('[消息]：',['data'=>$content]);
 
 
@@ -66,7 +71,7 @@ class WebSocket extends Command
             foreach ($server->connections as $fd){
                 Log::info('[fd]：',['fd'=>$fd]);
 
-                $server->push($fd,$content);
+                $server->push($fd,json_encode($content));
             }
 
 
