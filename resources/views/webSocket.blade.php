@@ -17,12 +17,10 @@
 
 <script type="text/javascript">
     if(window.WebSocket){
-        // 端口和ip地址对应不要写错
         var webSocket = new WebSocket("ws://120.27.242.10:9503");
         webSocket.onopen = function (event) {
             console.log('webSocket 链接成功');
         };
-
         //收到服务端消息回调
         webSocket.onmessage = function (event) {
             console.log(event);
