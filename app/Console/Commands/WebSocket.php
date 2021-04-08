@@ -43,24 +43,28 @@ class WebSocket extends Command
         //连接成功回调
         $server->on('open', function (\Swoole\WebSocket\Server $server, $request) {
 
-            $data = request()->all();
-            Log::info('[链接成功][1]：',['data'=>$data,'request'=>$request]);
-            $this->info($request->fd .'链接成功');
+            Log::info('[连接参数]',['data'=>$request->fd]);
+            $this->info($request->fd .'连接参数');
         });
 
         //收到消息回调
         $server->on('message', function (\Swoole\WebSocket\Server $server, $frame) {
 
-
-            $data = request()->all();
-            Log::info('[消息]：',['data'=>$data,'frame'=>$frame]);
-
             $content = $frame->data;
 
+            Log::info('[消息]：',['data'=>$content]);
+
+
+            Log::info('[connections]：',['fd'=>$server->connections]);
             //推送给所有链接
             foreach ($server->connections as $fd){
+                Log::info('[fd]：',['fd'=>$fd]);
+
                 $server->push($fd,$content);
             }
+
+
+
         });
         //关闭链接回调
         $server->on('close', function ($ser, $fd) {
