@@ -23,3 +23,11 @@ Route::get('phpinfo',function (){
 Route::get('webSocket',function (){
    return view('webSocket');
 });
+
+Route::get('live',function (){
+    return view('live');
+});
+
+Route::get('room',function (){
+    return view('room');
+});

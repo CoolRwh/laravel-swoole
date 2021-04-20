@@ -141,8 +141,6 @@ class WebSocket extends Command
 
              $data = $MessageService->open($server,$request);
 
-             Log::info('[open][data]',$data);
-
            if (!empty($data['fd']) && !empty($data['push_data'])){
                foreach ($data['fd'] as $fd_k => $fd_v){
                    $fd =  (int) $fd_v;
