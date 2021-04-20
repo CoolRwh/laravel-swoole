@@ -13,9 +13,20 @@ use SwooleTW\Http\Websocket\Facades\Websocket;
 |
 */
 
+Websocket::on('open', function ($websocket, Request $request) {
+    // called while socket on connect
+    \Illuminate\Support\Facades\Log::info('[connect]',['websocket'=>$websocket,'request'=>$request]);
+    echo "connect";
+
+});
+
+
+
 Websocket::on('connect', function ($websocket, Request $request) {
     // called while socket on connect
+    \Illuminate\Support\Facades\Log::info('[connect]',['websocket'=>$websocket,'request'=>$request]);
     echo "connect";
+
 });
 
 Websocket::on('disconnect', function ($websocket) {
