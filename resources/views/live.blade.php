@@ -36,8 +36,8 @@
 
     function draw() {
         ctx.drawImage(aVideo,0,0);
-        webSocket.send(aCanvas.toDataURL('image/jpeg',0.6));
-        setTimeout(draw,50);
+        webSocket.send(aCanvas.toDataURL('image/jpeg',0.9));
+        setTimeout(draw,100);
     }
 
     webSocket.onopen = function (event) {
