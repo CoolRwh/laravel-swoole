@@ -24,7 +24,7 @@ class WebSocket extends Command
      *
      * @var string
      */
-    protected $description = '启动WebSocket';
+    protected $description = 'swoole-WebSocket 【start 开启】 【stop 停止】 【restart 重启】';
 
 
     protected $websocket_config = [];
