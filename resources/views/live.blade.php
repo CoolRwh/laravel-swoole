@@ -23,8 +23,8 @@
     };
 
     // var webSocket = new WebSocket("ws://192.168.138.129:9510");
-    var webSocket = new WebSocket("ws://120.27.242.10:9510");
-
+    // var webSocket = new WebSocket("ws://120.27.242.10:9510");
+    var webSocket = new WebSocket("wss://cs.coolr.top/wss/");
     var aVideo = document.getElementById('video');
     var aCanvas = document.getElementById('canvas');
     var ctx = aCanvas.getContext('2d');

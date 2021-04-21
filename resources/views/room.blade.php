@@ -9,7 +9,8 @@
 <script type="text/javascript">
     if(window.WebSocket){
         // var webSocket = new WebSocket("ws://192.168.138.129:9510");
-        var webSocket = new WebSocket("ws://120.27.242.10:9510");
+        // var webSocket = new WebSocket("ws://120.27.242.10:9510");
+        var webSocket = new WebSocket("wss://cs.coolr.top/wss/");
 
         webSocket.onopen = function (event) {
             console.log(event);
